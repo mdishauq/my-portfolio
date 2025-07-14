@@ -9,11 +9,23 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
+  <button id="theme-toggle">Toggle Theme</button>
+  <header class="navbar">
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
   <div class="hero-section">
     <div class="overlay">
-      <div class="intro">
+      <div class="intro" data-aos="fade-up">
+        <h1><span class="typing"></span></h1>
         <img src="images/profile.jpg" alt="Profile Photo" class="profile-pic" />
-        <h1>Mohamed Ishauq</h1>
         <p>Embedded Engineer | STM32 | Arduino | C Programming</p>
         <p class="contact">
           📞 7904654367 |
@@ -21,11 +33,12 @@
           <a href="https://github.com/mdishauq" target="_blank">GitHub</a> |
           <a href="https://www.linkedin.com/in/mohamed-ishauq-21613127b" target="_blank">LinkedIn</a>
         </p>
+        <a class="btn" href="Mohamed_Ishauq_Resume.pdf" download>Download Resume</a>
       </div>
     </div>
   </div>
 
-  <section class="about section" data-aos="fade-up">
+  <section id="about" class="about section" data-aos="fade-up">
     <h2>About Me</h2>
     <p>
       I’m a final-year Electronics and Communication Engineering student passionate about embedded systems.
@@ -33,7 +46,7 @@
     </p>
   </section>
 
-  <section class="skills section" data-aos="fade-up">
+  <section id="skills" class="skills section" data-aos="fade-up">
     <h2>Skills</h2>
     <ul>
       <li>C Language</li>
@@ -43,26 +56,31 @@
     </ul>
   </section>
 
-  <section class="projects section">
-    <h2>Projects</h2>
+  <section id="projects" class="projects section">
+    <h2 data-aos="fade-up">Projects</h2>
 
-    <div class="project-card" data-aos="flip-left">
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="stm32">STM32</button>
+      <button class="filter-btn" data-filter="arduino">Arduino</button>
+    </div>
+
+    <div class="project-card stm32" data-aos="flip-left">
       <h3>1. STM32 Bare-Metal Drivers (Basics)</h3>
-      <p>
-        Developed register-level drivers using STM32CubeIDE.
-        Below is a snapshot of the code:
-      </p>
+      <p>Developed register-level drivers using STM32CubeIDE.</p>
       <img src="images/stm32-code.jpg" alt="STM32 Code Screenshot" />
     </div>
 
-    <div class="project-card" data-aos="flip-left">
+    <div class="project-card arduino" data-aos="flip-left">
       <h3>2. Multi-Mode RC Car (Arduino)</h3>
-      <p>
-        Built an RC car with voice, Bluetooth app control & obstacle avoidance.
-        Below is a live demo of the car:
-      </p>
+      <p>Built an RC car with voice, Bluetooth app control & obstacle avoidance.</p>
       <img src="images/car-project.gif" alt="Car Demo GIF" />
     </div>
+  </section>
+
+  <section id="contact" class="section" data-aos="fade-up">
+    <h2>Contact</h2>
+    <p>If you'd like to connect, feel free to reach out via LinkedIn or email me directly.</p>
   </section>
 
   <footer>
@@ -81,6 +99,40 @@
       speed: 400,
       glare: true,
       "max-glare": 0.3,
+    });
+  </script>
+  <script>
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    var typed = new Typed(".typing", {
+      strings: ["Mohamed Ishauq", "Embedded Engineer", "C Programmer"],
+      typeSpeed: 100,
+      backSpeed: 60,
+      loop: true
+    });
+  </script>
+  <script>
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelector('.filter-btn.active').classList.remove('active');
+        btn.classList.add('active');
+        const category = btn.getAttribute('data-filter');
+
+        projectCards.forEach(card => {
+          if (category === 'all' || card.classList.contains(category)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
     });
   </script>
 </body>
