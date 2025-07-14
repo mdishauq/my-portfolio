@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mohamed Ishauq - Portfolio</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- AOS CSS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 </head>
 <body>
   <button id="theme-toggle">Toggle Theme</button>
+
   <header class="navbar">
     <nav>
       <ul>
@@ -21,7 +21,7 @@
     </nav>
   </header>
 
-  <div class="hero-section">
+  <section class="hero-section">
     <div class="overlay">
       <div class="intro" data-aos="fade-up">
         <h1><span class="typing"></span></h1>
@@ -36,9 +36,9 @@
         <a class="btn" href="Mohamed_Ishauq_Resume.pdf" download>Download Resume</a>
       </div>
     </div>
-  </div>
+  </section>
 
-  <section id="about" class="about section" data-aos="fade-up">
+  <section id="about" class="section" data-aos="fade-up">
     <h2>About Me</h2>
     <p>
       I’m a final-year Electronics and Communication Engineering student passionate about embedded systems.
@@ -46,7 +46,7 @@
     </p>
   </section>
 
-  <section id="skills" class="skills section" data-aos="fade-up">
+  <section id="skills" class="section" data-aos="fade-up">
     <h2>Skills</h2>
     <ul>
       <li>C Language</li>
@@ -56,8 +56,8 @@
     </ul>
   </section>
 
-  <section id="projects" class="projects section">
-    <h2 data-aos="fade-up">Projects</h2>
+  <section id="projects" class="section" data-aos="fade-up">
+    <h2>Projects</h2>
 
     <div class="filter-buttons">
       <button class="filter-btn active" data-filter="all">All</button>
@@ -89,9 +89,8 @@
 
   <!-- JS Libraries -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
+  <script>AOS.init();</script>
+
   <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
   <script>
     VanillaTilt.init(document.querySelectorAll(".project-card"), {
@@ -101,11 +100,13 @@
       "max-glare": 0.3,
     });
   </script>
+
   <script>
     document.getElementById('theme-toggle').addEventListener('click', () => {
       document.body.classList.toggle('light-mode');
     });
   </script>
+
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script>
     var typed = new Typed(".typing", {
@@ -115,6 +116,7 @@
       loop: true
     });
   </script>
+
   <script>
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
