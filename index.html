@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mohamed Ishauq - Portfolio</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
   <div class="hero-section">
@@ -23,7 +25,7 @@
     </div>
   </div>
 
-  <section class="about section">
+  <section class="about section" data-aos="fade-up">
     <h2>About Me</h2>
     <p>
       I’m a final-year Electronics and Communication Engineering student passionate about embedded systems.
@@ -31,7 +33,7 @@
     </p>
   </section>
 
-  <section class="skills section">
+  <section class="skills section" data-aos="fade-up">
     <h2>Skills</h2>
     <ul>
       <li>C Language</li>
@@ -44,7 +46,7 @@
   <section class="projects section">
     <h2>Projects</h2>
 
-    <div class="project-card">
+    <div class="project-card" data-aos="flip-left">
       <h3>1. STM32 Bare-Metal Drivers (Basics)</h3>
       <p>
         Developed register-level drivers using STM32CubeIDE.
@@ -53,7 +55,7 @@
       <img src="images/stm32-code.jpg" alt="STM32 Code Screenshot" />
     </div>
 
-    <div class="project-card">
+    <div class="project-card" data-aos="flip-left">
       <h3>2. Multi-Mode RC Car (Arduino)</h3>
       <p>
         Built an RC car with voice, Bluetooth app control & obstacle avoidance.
@@ -66,5 +68,20 @@
   <footer>
     <p>&copy; 2025 Mohamed Ishauq. All rights reserved.</p>
   </footer>
+
+  <!-- JS Libraries -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
+  <script>
+    VanillaTilt.init(document.querySelectorAll(".project-card"), {
+      max: 15,
+      speed: 400,
+      glare: true,
+      "max-glare": 0.3,
+    });
+  </script>
 </body>
 </html>
