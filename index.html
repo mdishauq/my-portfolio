@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mohamed Ishauq - Portfolio</title>
   <style>
+    /* Reset and Global */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -33,34 +34,93 @@
     .navbar li { display: inline-block; margin: 0 15px; }
     .navbar a { color: #fff; font-weight: bold; }
 
-    /* Hero Section with Background Animation */
+    /* Hero Section (Kendric Style) */
     .hero-section {
       height: 100vh;
+      background: url('images/background.jpg') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
+      text-align: left;
+      padding: 0 20px;
+    }
+    .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      max-width: 1200px;
+      gap: 40px;
+    }
+    .hero-text {
+      flex: 1;
+      color: #fff;
+      padding: 20px;
+    }
+    .hero-text .intro {
+      font-size: 18px;
+      opacity: 0.8;
+    }
+    .hero-text .name {
+      font-size: 48px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    .hero-text .role {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+    .hero-text .highlight {
+      color: #00f0ff;
+    }
+    .hero-text .description {
+      max-width: 400px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .hero-text .social-links img {
+      width: 35px;
+      margin-right: 10px;
+      filter: invert(100%);
+      transition: transform 0.3s ease;
+    }
+    .hero-text .social-links img:hover {
+      transform: scale(1.2);
+    }
+    .hero-text .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 25px;
+      background: #00f0ff;
+      color: #000;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .hero-text .btn:hover {
+      background: #00a8cc;
+      color: #fff;
+    }
+    .hero-image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hexagon {
       position: relative;
-      background: url('images/background.jpg') no-repeat center center/cover;
-      animation: zoom-bg 20s ease-in-out infinite alternate;
+      width: 250px;
+      height: 270px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 25px #00f0ff;
     }
-    @keyframes zoom-bg {
-      0% { background-size: 100%; }
-      100% { background-size: 110%; }
-    }
-    .overlay {
-      background: rgba(0,0,0,0.6);
-      padding: 30px; text-align: center; border-radius: 20px;
-      backdrop-filter: blur(5px);
-      position: relative; z-index: 1;
-    }
-    .profile-pic {
-      width: 150px; height: 150px; border-radius: 50%;
-      margin: 20px 0; border: 3px solid #00bfff;
-    }
-    .typing { font-size: 32px; font-weight: bold; color: #00bfff; text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff; }
-    .btn {
-      display: inline-block; margin-top: 10px; background: #00bfff;
-      color: #fff; padding: 10px 15px; border-radius: 5px; font-weight: bold;
+    .hexagon img {
+      width: 200px;
+      border-radius: 15px;
     }
 
     /* Skills */
@@ -105,9 +165,10 @@
     /* Responsive */
     @media (max-width: 768px) {
       .navbar li { display: block; margin: 10px 0; }
-      .hero-section { height: auto; padding: 60px 20px; }
-      .profile-pic { width: 100px; height: 100px; }
-      .typing { font-size: 24px; }
+      .hero-content { flex-direction: column; text-align: center; }
+      .hero-image { margin-top: 20px; }
+      .name { font-size: 32px; }
+      .role { font-size: 18px; }
     }
   </style>
 </head>
@@ -125,22 +186,32 @@
     </nav>
   </header>
 
-  <!-- Hero Section -->
+  <!-- HERO SECTION -->
   <section class="hero-section">
-    <div class="overlay">
-      <h1><span class="typing"></span></h1>
-      <img src="images/profile.jpg" alt="Profile Photo" class="profile-pic" />
-      <p>Embedded Engineer | STM32 | Arduino | C Programming</p>
-      <p class="contact">
-        📞 7904654367 |
-        ✉️ mdishauq619@gmail.com |
-        <a href="https://github.com/mdishauq" target="_blank">GitHub</a> |
-        <a href="https://www.linkedin.com/in/mohamed-ishauq-21613127b" target="_blank">LinkedIn</a>
-      </p>
-      <a class="btn" href="Mohamed_Ishauq_Resume.pdf" download>Download Resume</a>
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="intro">Hello, It's Me</p>
+        <h1 class="name">Mohamed Ishauq</h1>
+        <h2 class="role">And I'm an <span class="highlight">Embedded Engineer</span></h2>
+        <p class="description">
+          Embedded Engineer | STM32 | Arduino | C Programming
+        </p>
+        <div class="social-links">
+          <a href="https://github.com/mdishauq" target="_blank"><img src="images/github.png" alt="GitHub"></a>
+          <a href="https://www.linkedin.com/in/mohamed-ishauq-21613127b" target="_blank"><img src="images/linkedin.png" alt="LinkedIn"></a>
+          <a href="mailto:mdishauq619@gmail.com"><img src="images/email.png" alt="Email"></a>
+        </div>
+        <a href="Mohamed_Ishauq_Resume.pdf" class="btn" download>Download Resume</a>
+      </div>
+      <div class="hero-image">
+        <div class="hexagon">
+          <img src="images/profile.jpg" alt="Profile Photo">
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- ABOUT -->
   <section id="about" class="section">
     <h2>About Me</h2>
     <p>
@@ -149,6 +220,7 @@
     </p>
   </section>
 
+  <!-- SKILLS -->
   <section id="skills" class="section">
     <h2>Skills</h2>
     <ul class="skills-list">
@@ -159,6 +231,7 @@
     </ul>
   </section>
 
+  <!-- PROJECTS -->
   <section id="projects" class="section">
     <h2>Projects</h2>
     <div class="filter-buttons">
@@ -166,7 +239,6 @@
       <button class="filter-btn" data-filter="stm32">STM32</button>
       <button class="filter-btn" data-filter="arduino">Arduino</button>
     </div>
-
     <!-- Static Projects -->
     <div class="project-card stm32">
       <h3>1. STM32 Bare-Metal Drivers (Basics)</h3>
@@ -174,22 +246,20 @@
       <img src="images/stm32-code.jpg" alt="STM32 Code Screenshot" />
       <a class="view-github-btn" href="https://github.com/mdishauq" target="_blank">View on GitHub</a>
     </div>
-
     <div class="project-card arduino">
       <h3>2. Multi-Mode RC Car (Arduino)</h3>
       <p>Built an RC car with voice, Bluetooth app control & obstacle avoidance.</p>
       <img src="images/car-project.gif" alt="Car Demo GIF" />
       <a class="view-github-btn" href="https://github.com/mdishauq" target="_blank">View on GitHub</a>
     </div>
-
     <!-- Dynamic GitHub Projects -->
     <div id="dynamic-projects"></div>
-
     <div id="view-all-projects">
       <a href="https://github.com/mdishauq?tab=repositories" target="_blank">View All Projects on GitHub</a>
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section id="contact" class="section">
     <h2>Contact</h2>
     <p>If you'd like to connect, feel free to reach out via LinkedIn or email me directly.</p>
@@ -199,25 +269,23 @@
     <p>&copy; 2025 Mohamed Ishauq. All rights reserved.</p>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script>
+    // Preloader
     window.addEventListener('load', () => { document.getElementById('preloader').style.display = 'none'; });
 
+    // Theme Toggle
     document.getElementById('theme-toggle').addEventListener('click', () => {
       document.body.classList.toggle('light-mode');
       localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
     });
     if(localStorage.getItem('theme') === 'light') document.body.classList.add('light-mode');
 
-    new Typed(".typing", {
-      strings: ["Mohamed Ishauq", "Embedded Engineer", "C Programmer"],
-      typeSpeed: 100, backSpeed: 60, loop: true
-    });
-
+    // Skills Progress
     document.querySelectorAll('.progress-fill').forEach(bar => {
       setTimeout(() => { bar.style.width = bar.dataset.percent + '%'; }, 500);
     });
 
+    // Filter Buttons
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
     filterButtons.forEach(btn => {
@@ -231,6 +299,7 @@
       });
     });
 
+    // GitHub Projects Fetch
     const username = "mdishauq";
     const projectContainer = document.getElementById('dynamic-projects');
     async function fetchRepos() {
