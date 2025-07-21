@@ -35,29 +35,27 @@
     .navbar li { display: inline-block; margin: 0 15px; }
     .navbar a { color: #fff; font-weight: bold; }
 
-    /* Hero Section with PCB Animation */
+    /* Hero Section (Kendrik Style) */
     .hero-section {
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      text-align: center;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(120deg, #0a0a0a, #101010);
+      background: url('images/background.png') center/cover no-repeat;
+      animation: bgMove 20s linear infinite;
     }
 
-    canvas#circuit-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      background: #0d0d0d;
+    @keyframes bgMove {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
     }
 
     .overlay {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(0,0,0,0.55);
       padding: 40px;
       text-align: center;
       border-radius: 20px;
@@ -65,6 +63,8 @@
       box-shadow: 0 0 30px rgba(0, 191, 255, 0.4);
       position: relative;
       z-index: 1;
+      max-width: 600px;
+      width: 90%;
     }
 
     .profile-pic {
@@ -157,7 +157,6 @@
   </header>
 
   <section class="hero-section">
-    <canvas id="circuit-canvas"></canvas>
     <div class="overlay">
       <h1><span class="typing"></span></h1>
       <img src="images/profile.jpg" alt="Profile Photo" class="profile-pic" />
@@ -305,44 +304,6 @@
       projectContainer.appendChild(card);
     }
     fetchRepos();
-
-    // PCB Animation
-    const canvas = document.getElementById('circuit-canvas');
-    const ctx = canvas.getContext('2d');
-    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    window.addEventListener('resize', resizeCanvas); resizeCanvas();
-    const traces = [];
-    const cols = 20, rows = 10;
-    for (let i = 0; i < cols; i++) {
-      for (let j = 0; j < rows; j++) {
-        const x = (i / cols) * canvas.width;
-        const y = (j / rows) * canvas.height;
-        traces.push({ x1: x, y1: y, x2: x + 50, y2: y, offset: Math.random() * 100 });
-        traces.push({ x1: x, y1: y, x2: x, y2: y + 50, offset: Math.random() * 100 });
-      }
-    }
-    function animatePCB() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.strokeStyle = '#003344';
-      ctx.lineWidth = 2;
-      traces.forEach(trace => {
-        ctx.beginPath();
-        ctx.moveTo(trace.x1, trace.y1);
-        ctx.lineTo(trace.x2, trace.y2);
-        ctx.stroke();
-        const len = Math.hypot(trace.x2 - trace.x1, trace.y2 - trace.y1);
-        const progress = (Date.now() / 20 + trace.offset) % len;
-        const ratio = progress / len;
-        const cx = trace.x1 + (trace.x2 - trace.x1) * ratio;
-        const cy = trace.y1 + (trace.y2 - trace.y1) * ratio;
-        ctx.beginPath();
-        ctx.arc(cx, cy, 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = '#00bfff';
-        ctx.fill();
-      });
-      requestAnimationFrame(animatePCB);
-    }
-    animatePCB();
   </script>
 </body>
 </html>
