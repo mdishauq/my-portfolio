@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mohamed Ishauq - Portfolio</title>
   <style>
-    /* Reset and Global */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -16,7 +15,6 @@
     }
     a { color: #00bfff; text-decoration: none; }
     h1, h2, h3 { margin-bottom: 10px; }
-    ul { list-style-type: square; }
     .section { padding: 50px 20px; max-width: 1000px; margin: auto; position: relative; z-index: 1; }
 
     /* Theme Toggle */
@@ -25,8 +23,6 @@
       background: #00bfff; border: none; color: #fff;
       padding: 10px 15px; border-radius: 8px; cursor: pointer;
     }
-    body.light-mode { background: #f0f0f0; color: #111; }
-    body.light-mode a { color: #0066cc; }
 
     /* Navbar */
     .navbar { position: sticky; top: 0; background: #111; padding: 10px 0; z-index: 999; text-align: center; }
@@ -34,93 +30,67 @@
     .navbar li { display: inline-block; margin: 0 15px; }
     .navbar a { color: #fff; font-weight: bold; }
 
-    /* Hero Section (Kendric Style) */
+    /* Hero Section */
     .hero-section {
-      height: 100vh;
-      background: url('images/background.jpg') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: left;
-      padding: 0 20px;
+      height: 100vh; display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
     }
-    .hero-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 90%;
-      max-width: 1200px;
-      gap: 40px;
-    }
-    .hero-text {
-      flex: 1;
-      color: #fff;
-      padding: 20px;
-    }
-    .hero-text .intro {
-      font-size: 18px;
-      opacity: 0.8;
-    }
-    .hero-text .name {
-      font-size: 48px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
-    .hero-text .role {
-      font-size: 24px;
-      margin-bottom: 15px;
-    }
-    .hero-text .highlight {
-      color: #00f0ff;
-    }
-    .hero-text .description {
+    canvas#circuit-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+    .overlay {
+      background: rgba(0,0,0,0.6);
+      padding: 40px 30px; text-align: center; border-radius: 20px;
+      backdrop-filter: blur(5px);
+      position: relative; z-index: 1;
       max-width: 400px;
-      line-height: 1.6;
-      margin-bottom: 20px;
     }
-    .hero-text .social-links img {
-      width: 35px;
-      margin-right: 10px;
-      filter: invert(100%);
-      transition: transform 0.3s ease;
+    .typing {
+      font-size: 40px;
+      font-weight: bold;
+      color: #00bfff;
+      text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff;
+      animation: glow 2s ease-in-out infinite alternate;
     }
-    .hero-text .social-links img:hover {
-      transform: scale(1.2);
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #00bfff, 0 0 10px #00bfff; }
+      to { text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff; }
     }
-    .hero-text .btn {
+
+    .hexagon {
+      width: 180px;
+      height: 200px;
+      margin: 20px auto;
+      background: url('images/profile.jpg') no-repeat center/cover;
+      clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+      border: 4px solid #00bfff;
+      box-shadow: 0 0 20px #00bfff, 0 0 40px #00f0ff;
+      animation: hexGlow 3s infinite alternate;
+    }
+    @keyframes hexGlow {
+      0% { box-shadow: 0 0 15px #00bfff, 0 0 25px #00f0ff; }
+      100% { box-shadow: 0 0 25px #00ffff, 0 0 50px #00f0ff; }
+    }
+
+    .buttons { margin-top: 20px; }
+    .buttons .btn {
       display: inline-block;
+      margin: 5px;
       padding: 10px 20px;
       border-radius: 25px;
       background: #00f0ff;
       color: #000;
       font-weight: bold;
-      transition: background 0.3s ease;
-    }
-    .hero-text .btn:hover {
-      background: #00a8cc;
-      color: #fff;
-    }
-    .hero-image {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .hexagon {
+      transition: transform 0.3s ease;
+      text-decoration: none;
       position: relative;
-      width: 250px;
-      height: 270px;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 0 25px #00f0ff;
+      animation: pulse-glow 2s infinite;
     }
-    .hexagon img {
-      width: 200px;
-      border-radius: 15px;
+    .buttons .btn:hover {
+      transform: scale(1.1);
+    }
+    @keyframes pulse-glow {
+      0% { box-shadow: 0 0 5px #00f0ff, 0 0 10px #00f0ff; }
+      50% { box-shadow: 0 0 15px #00f0ff, 0 0 30px #00f0ff; }
+      100% { box-shadow: 0 0 5px #00f0ff, 0 0 10px #00f0ff; }
     }
 
     /* Skills */
@@ -140,40 +110,23 @@
       box-shadow: 0 0 10px rgba(0,191,255,0.3); transition: transform 0.3s;
     }
     .project-card img { max-width: 100%; border-radius: 10px; margin-top: 10px; }
-    .light-mode .project-card { background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
     .view-github-btn {
       display: inline-block; margin-top: 10px; background: #00bfff;
       color: #fff; padding: 8px 12px; border-radius: 5px; font-weight: bold;
-    }
-    #view-all-projects { text-align: center; margin-top: 20px; }
-    #view-all-projects a {
-      background: #00bfff; color: #fff; padding: 10px 20px; border-radius: 6px; text-decoration: none;
     }
 
     /* Contact */
     footer { text-align: center; padding: 20px; background: #111; color: #888; }
 
-    /* Preloader */
-    #preloader {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: #0d0d0d; display: flex; justify-content: center; align-items: center;
-      z-index: 2000;
-    }
-    .loader { border: 6px solid #333; border-top: 6px solid #00bfff; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* Responsive */
     @media (max-width: 768px) {
       .navbar li { display: block; margin: 10px 0; }
-      .hero-content { flex-direction: column; text-align: center; }
-      .hero-image { margin-top: 20px; }
-      .name { font-size: 32px; }
-      .role { font-size: 18px; }
+      .hero-section { height: auto; padding: 60px 20px; }
+      .typing { font-size: 28px; }
+      .hexagon { width: 140px; height: 160px; }
     }
   </style>
 </head>
 <body>
-  <div id="preloader"><div class="loader"></div></div>
   <button id="theme-toggle">Toggle Theme</button>
   <header class="navbar">
     <nav>
@@ -186,32 +139,23 @@
     </nav>
   </header>
 
-  <!-- HERO SECTION -->
+  <!-- Hero Section -->
   <section class="hero-section">
-    <div class="hero-content">
-      <div class="hero-text">
-        <p class="intro">Hello, It's Me</p>
-        <h1 class="name">Mohamed Ishauq</h1>
-        <h2 class="role">And I'm an <span class="highlight">Embedded Engineer</span></h2>
-        <p class="description">
-          Embedded Engineer | STM32 | Arduino | C Programming
-        </p>
-        <div class="social-links">
-          <a href="https://github.com/mdishauq" target="_blank"><img src="images/github.png" alt="GitHub"></a>
-          <a href="https://www.linkedin.com/in/mohamed-ishauq-21613127b" target="_blank"><img src="images/linkedin.png" alt="LinkedIn"></a>
-          <a href="mailto:mdishauq619@gmail.com"><img src="images/email.png" alt="Email"></a>
-        </div>
-        <a href="Mohamed_Ishauq_Resume.pdf" class="btn" download>Download Resume</a>
-      </div>
-      <div class="hero-image">
-        <div class="hexagon">
-          <img src="images/profile.jpg" alt="Profile Photo">
-        </div>
+    <canvas id="circuit-canvas"></canvas>
+    <div class="overlay">
+      <h1><span class="typing"></span></h1>
+      <div class="hexagon"></div>
+      <p>Embedded Engineer | STM32 | Arduino | C Programming</p>
+      <div class="buttons">
+        <a class="btn" href="Mohamed_Ishauq_Resume.pdf" download>Download Resume</a>
+        <a class="btn" href="https://github.com/mdishauq" target="_blank">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/mohamed-ishauq-21613127b" target="_blank">LinkedIn</a>
+        <a class="btn" href="mailto:mdishauq619@gmail.com">Email</a>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
+  <!-- About -->
   <section id="about" class="section">
     <h2>About Me</h2>
     <p>
@@ -220,7 +164,7 @@
     </p>
   </section>
 
-  <!-- SKILLS -->
+  <!-- Skills -->
   <section id="skills" class="section">
     <h2>Skills</h2>
     <ul class="skills-list">
@@ -231,7 +175,7 @@
     </ul>
   </section>
 
-  <!-- PROJECTS -->
+  <!-- Projects -->
   <section id="projects" class="section">
     <h2>Projects</h2>
     <div class="filter-buttons">
@@ -239,27 +183,24 @@
       <button class="filter-btn" data-filter="stm32">STM32</button>
       <button class="filter-btn" data-filter="arduino">Arduino</button>
     </div>
-    <!-- Static Projects -->
+
     <div class="project-card stm32">
       <h3>1. STM32 Bare-Metal Drivers (Basics)</h3>
       <p>Developed register-level drivers using STM32CubeIDE.</p>
       <img src="images/stm32-code.jpg" alt="STM32 Code Screenshot" />
       <a class="view-github-btn" href="https://github.com/mdishauq" target="_blank">View on GitHub</a>
     </div>
+
     <div class="project-card arduino">
       <h3>2. Multi-Mode RC Car (Arduino)</h3>
       <p>Built an RC car with voice, Bluetooth app control & obstacle avoidance.</p>
       <img src="images/car-project.gif" alt="Car Demo GIF" />
       <a class="view-github-btn" href="https://github.com/mdishauq" target="_blank">View on GitHub</a>
     </div>
-    <!-- Dynamic GitHub Projects -->
+
     <div id="dynamic-projects"></div>
-    <div id="view-all-projects">
-      <a href="https://github.com/mdishauq?tab=repositories" target="_blank">View All Projects on GitHub</a>
-    </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact" class="section">
     <h2>Contact</h2>
     <p>If you'd like to connect, feel free to reach out via LinkedIn or email me directly.</p>
@@ -269,18 +210,49 @@
     <p>&copy; 2025 Mohamed Ishauq. All rights reserved.</p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script>
-    // Preloader
-    window.addEventListener('load', () => { document.getElementById('preloader').style.display = 'none'; });
-
-    // Theme Toggle
-    document.getElementById('theme-toggle').addEventListener('click', () => {
-      document.body.classList.toggle('light-mode');
-      localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+    new Typed(".typing", {
+      strings: ["Mohamed Ishauq", "Embedded Engineer", "C Programmer"],
+      typeSpeed: 100, backSpeed: 60, loop: true
     });
-    if(localStorage.getItem('theme') === 'light') document.body.classList.add('light-mode');
 
-    // Skills Progress
+    // Circuit Animation
+    const canvas = document.getElementById('circuit-canvas');
+    const ctx = canvas.getContext('2d');
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resizeCanvas); resizeCanvas();
+    let nodes = Array.from({ length: 50 }, () => ({
+      x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5
+    }));
+    function animateCircuit() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      nodes.forEach(n => {
+        n.x += n.vx; n.y += n.vy;
+        if(n.x < 0 || n.x > canvas.width) n.vx *= -1;
+        if(n.y < 0 || n.y > canvas.height) n.vy *= -1;
+        ctx.beginPath(); ctx.arc(n.x, n.y, 2, 0, Math.PI*2);
+        ctx.fillStyle = '#00bfff'; ctx.fill();
+      });
+      for(let i=0; i<nodes.length; i++) {
+        for(let j=i+1; j<nodes.length; j++) {
+          let dx = nodes[i].x - nodes[j].x;
+          let dy = nodes[i].y - nodes[j].y;
+          if(dx*dx + dy*dy < 10000) {
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.strokeStyle = 'rgba(0,191,255,0.2)';
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animateCircuit);
+    }
+    animateCircuit();
+
+    // Skills Animation
     document.querySelectorAll('.progress-fill').forEach(bar => {
       setTimeout(() => { bar.style.width = bar.dataset.percent + '%'; }, 500);
     });
@@ -298,45 +270,6 @@
         });
       });
     });
-
-    // GitHub Projects Fetch
-    const username = "mdishauq";
-    const projectContainer = document.getElementById('dynamic-projects');
-    async function fetchRepos() {
-      const res = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`);
-      const repos = await res.json();
-      for (const repo of repos) {
-        if (repo.topics && repo.topics.includes("portfolio")) {
-          const media = await fetchMedia(repo.name, repo.default_branch);
-          addProjectCard(repo, media);
-        }
-      }
-    }
-    async function fetchMedia(repoName, branch) {
-      try {
-        const res = await fetch(`https://api.github.com/repos/${username}/${repoName}/contents/source?ref=${branch}`);
-        if (!res.ok) return [];
-        const items = await res.json();
-        return items.filter(i => i.type === "file" && /\.(jpg|jpeg|png|gif|mp4|webm)$/i.test(i.name))
-                    .map(i => ({ url: i.download_url, isVideo: /\.(mp4|webm)$/i.test(i.name) }));
-      } catch { return []; }
-    }
-    function addProjectCard(repo, media) {
-      const card = document.createElement('div');
-      card.className = `project-card ${repo.topics.join(' ')}`;
-      card.innerHTML = `
-        <h3>${repo.name.replace(/-/g, ' ')}</h3>
-        <p>${repo.description || ''}</p>
-        ${media.length ? media.map(m => m.isVideo ?
-          `<video controls style="max-width:100%;border-radius:10px;margin-top:10px;"><source src="${m.url}"></video>` :
-          `<img src="${m.url}" alt="${repo.name} media">`).join('') : ''}
-        <p>⭐ ${repo.stargazers_count} | Updated: ${new Date(repo.updated_at).toLocaleDateString()}</p>
-        <a class="view-github-btn" href="${repo.html_url}" target="_blank">View on GitHub</a>
-        ${repo.homepage ? `<a class="view-github-btn" href="${repo.homepage}" target="_blank">Demo</a>` : ''}
-      `;
-      projectContainer.appendChild(card);
-    }
-    fetchRepos();
   </script>
 </body>
 </html>
